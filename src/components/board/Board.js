@@ -5,11 +5,12 @@ import 'react-dom';
 import React from "react";
 
 function Board() {
+    let height = 500;
     return (
         <div className="Board">
-            <svg height={500} width={800}>
+            <svg height={height} width={1200}>
+                {drawTiles(height)}
                 {drawCircles()}
-                {drawTiles()}
             </svg>
         </div>
     );
@@ -28,8 +29,17 @@ function drawCircles() {
     return rocks;
 }
 
-function drawTiles() {
-    return Tile(0,0,40,160,80,0);
+function drawTiles(height) {
+    let ceiling = 0;
+    let distance = 100;
+    let tiles = [];
+    let colour = ['black', 'red'];
+    for(let i = 0; i < 12; i++){
+        colour.reverse();
+        tiles.push(Tile(distance*i,ceiling,distance+distance*i, ceiling,distance*i + (distance/2),2*distance, colour[0]));
+        tiles.push(Tile(distance*i,height,distance+distance*i, height, distance*i + (distance/2), height-(2*distance), colour[1]));
+    }
+    return tiles
 }
 
 export default Board;
