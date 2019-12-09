@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="first trinagle">
+    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tile/Tile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tile/Tile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/tile/Tile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tile/Tile.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575793207079</updated>
       <workItem from="1575793208871" duration="7595000" />
-      <workItem from="1575875032709" duration="2221000" />
+      <workItem from="1575875032709" duration="4368000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
@@ -112,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575802346658</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="board game ready">
+      <created>1575877293334</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575877293334</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +144,7 @@
     <MESSAGE value="board added" />
     <MESSAGE value="can draw circles with function" />
     <MESSAGE value="first trinagle" />
-    <option name="LAST_COMMIT_MESSAGE" value="first trinagle" />
+    <MESSAGE value="board game ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="board game ready" />
   </component>
 </project>

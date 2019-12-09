@@ -18,13 +18,9 @@ function Board() {
 
 function drawCircles() {
     let rocks = [];
-    let id = 0;
-    for (let i = 5; i < 8; i++){
-        for (let j = 5; j < 10; j++){
-            let rock = Rock(40*i, 40*j+20, id);
-            id++;
-            rocks.push(rock)
-        }
+    let r = 40;
+    for(let i = 0; i < 5; i++){
+        rocks.push(Rock(50,r/2 + i*r,i));
     }
     return rocks;
 }
@@ -36,8 +32,8 @@ function drawTiles(height) {
     let colour = ['black', 'red'];
     for(let i = 0; i < 12; i++){
         colour.reverse();
-        tiles.push(Tile(distance*i,ceiling,distance+distance*i, ceiling,distance*i + (distance/2),2*distance, colour[0]));
-        tiles.push(Tile(distance*i,height,distance+distance*i, height, distance*i + (distance/2), height-(2*distance), colour[1]));
+        tiles.push(Tile(distance*i,ceiling,distance+distance*i, ceiling,distance*i + (distance/2),2*distance, colour[0], 'top'+i));
+        tiles.push(Tile(distance*i,height,distance+distance*i, height, distance*i + (distance/2), height-(2*distance), colour[1], 'bottom' + i));
     }
     return tiles
 }

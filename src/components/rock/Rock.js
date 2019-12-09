@@ -1,5 +1,6 @@
 import React from "react";
 import 'react-dom';
+import './Rock.css';
 
 function Rock(xPos, yPos, uniqueKey) {
     return (
