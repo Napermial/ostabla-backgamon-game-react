@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tile/Tile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tile/Tile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,7 +88,9 @@
       <option name="presentableId" value="Default" />
       <updated>1575793207079</updated>
       <workItem from="1575793208871" duration="7595000" />
-      <workItem from="1575875032709" duration="7235000" />
+      <workItem from="1575875032709" duration="16990000" />
+      <workItem from="1575962959568" duration="1373000" />
+      <workItem from="1575969216761" duration="10767000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
@@ -128,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575882634452</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="dragging added">
+      <created>1575885556280</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575885556280</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +167,7 @@
     <MESSAGE value="first trinagle" />
     <MESSAGE value="board game ready" />
     <MESSAGE value="rocks in place" />
-    <option name="LAST_COMMIT_MESSAGE" value="rocks in place" />
+    <MESSAGE value="dragging added" />
+    <option name="LAST_COMMIT_MESSAGE" value="dragging added" />
   </component>
 </project>

@@ -1,15 +1,28 @@
 import React from 'react';
 import './App.css';
-import '../board/Board';
 import Board from "../board/Board";
 
 
-function App() {
-  return (
-    <div className="App">
-       <Board/>
-    </div>
-  );
+export default class App extends React.Component{
+    constructor(props) {
+        super(props);
+    }
+
+        render(){
+            return(
+                <div className="App">
+                    <Board height={500} />
+                </div>
+            )
+        }
+
 }
 
-export default App;
+// function App() {
+//   return (
+//     <div className="App">
+//
+//     </div>
+//   );
+// }
+
