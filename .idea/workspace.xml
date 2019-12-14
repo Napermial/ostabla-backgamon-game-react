@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="can track rocks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.js" afterDir="false" />
@@ -90,7 +89,9 @@
       <workItem from="1575793208871" duration="7595000" />
       <workItem from="1575875032709" duration="16990000" />
       <workItem from="1575962959568" duration="1373000" />
-      <workItem from="1575969216761" duration="10767000" />
+      <workItem from="1575969216761" duration="11428000" />
+      <workItem from="1576224040878" duration="6692000" />
+      <workItem from="1576303170182" duration="8434000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
@@ -141,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575885556280</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="classes and handlers">
+      <created>1576006215708</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1576006215708</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +176,9 @@
     <MESSAGE value="board game ready" />
     <MESSAGE value="rocks in place" />
     <MESSAGE value="dragging added" />
-    <option name="LAST_COMMIT_MESSAGE" value="dragging added" />
+    <MESSAGE value="classes and handlers" />
+    <MESSAGE value="minor holdbacks" />
+    <MESSAGE value="can track rocks" />
+    <option name="LAST_COMMIT_MESSAGE" value="can track rocks" />
   </component>
 </project>

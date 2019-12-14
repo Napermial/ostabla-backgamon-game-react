@@ -5,59 +5,25 @@ import React from "react";
 import 'react-dom'
 
 export default class Board extends React.Component {
-    onDragOver = (ev) => {
-        ev.preventDefault();
-    };
-    constructor(props) {
-        super(props)
-    }
-    render(){
-    return (
-        <div className="Board">
-            <svg height={this.props.height} width={1200}>
-                {drawTiles(this.props.height)}
-                <Rock uniqueKey={1} xPos={200} yPos={200}/>
-            </svg>
-            <div className="yea" onDragOver={(e)=>this.onDragOver(e)}>there can be dragged stuff</div>
-        </div>
+    state = {};
+    r = 40;
+    list = [...Array(10).keys()];
+    rocks = this.list.map((i) => <Rock xPos={this.r / 2 + i * this.r} yPos={50 * i + 40} uniqueKey={'playerOne'+i} />);
+
+    render() {
+
+        return (
+            <div className="Board">
+                <svg height={this.props.height} width={1200}>
+                    {drawTiles(this.props.height)}
+                    {this.rocks}
+                </svg>
+            </div>
         )
 
     }
 }
 
-
-
-
-
-
-// function Board() {
-//     let tiles = [];
-//     for (let i = 0; i < 24; i++) {
-//         tiles[i] = new Array(5);
-//     }
-//     let height = 500;
-//     return (
-//         <div className="Board">
-//             <svg height={height} width={1200}>
-//                 {drawTiles(height)}
-//                 {drawCircles(tiles)}
-//             </svg>
-//         </div>
-//     );
-// }
-
-function drawCircles(tiles) {
-    let r = 40;
-    let list = new Array(5);
-    for (let i = 0; i < 5; i++) {
-        let temp = {'yPos': 50, 'xPos': r / 2 + i * r, 'uniqueKey': i};
-
-        new Rock(temp)
-    }
-    let i = 1;
-    let temp = {'yPos': 50, 'xPos': r / 2 + i * r, 'uniqueKey': i};
-    return new Rock(temp)
-}
 
 function drawTiles(height) {
     let ceiling = 0;
