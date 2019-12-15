@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +87,7 @@
       <workItem from="1576303170182" duration="9117000" />
       <workItem from="1576341336645" duration="3879000" />
       <workItem from="1576392556135" duration="12803000" />
-      <workItem from="1576415292809" duration="14492000" />
+      <workItem from="1576415292809" duration="15013000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
@@ -195,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576432728955</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="unque keys finally">
+      <created>1576434247023</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1576434247023</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +236,7 @@
     <MESSAGE value="user added" />
     <MESSAGE value="stroke to rocks" />
     <MESSAGE value="game table initialization" />
-    <option name="LAST_COMMIT_MESSAGE" value="game table initialization" />
+    <MESSAGE value="unque keys finally" />
+    <option name="LAST_COMMIT_MESSAGE" value="unque keys finally" />
   </component>
 </project>
