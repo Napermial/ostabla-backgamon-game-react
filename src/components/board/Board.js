@@ -17,12 +17,11 @@ export default class Board extends React.Component {
         let pos = this.tileList[v.where].positions[i];
         pos.isEmpty = false;
         this.availableSpaces = findAvailableSpaces(this.tileList);
-        if (v.user === 'user1'){
+        if (v.user === 'user1') {
             this.user1.rocks.push(this.user1.name + i);
-        }else {
+        } else {
             this.user2.rocks.push(this.user2.name + i);
         }
-
         return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this[v.user] + '' + i}
                      colour={this[v.user].colour}/>
     }));
@@ -97,13 +96,13 @@ function findAvailableSpaces(tileList) {
 
 function arrayGeneratorForRocks() {
     return Array.of(
-        Array(5).fill({where: 13, user:"user1"}),
-        Array(5).fill({where: 1, user:"user1"}),
-        Array(3).fill({where: 12, user:"user1"}),
-        Array(2).fill({where: 0, user:"user1"}),
-        Array(5).fill({where: 10, user:"user2"}),
-        Array(5).fill({where: 22, user:"user2"}),
-        Array(3).fill({where: 11, user:"user2"}),
-        Array(2).fill({where: 23, user:"user2"}));
+        Array(5).fill({where: 13, user: "user1"}),
+        Array(5).fill({where: 1, user: "user1"}),
+        Array(3).fill({where: 12, user: "user1"}),
+        Array(2).fill({where: 0, user: "user1"}),
+        Array(5).fill({where: 10, user: "user2"}),
+        Array(5).fill({where: 22, user: "user2"}),
+        Array(3).fill({where: 11, user: "user2"}),
+        Array(2).fill({where: 23, user: "user2"}));
 }
 
