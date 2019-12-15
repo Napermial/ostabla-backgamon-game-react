@@ -22,17 +22,9 @@ export default class Board extends React.Component {
         } else {
             this.user2.rocks.push(this.user2.name + i);
         }
-        return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this[v.user] + '' + i}
+        return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this[v.user].name + '' + this[v.user].rocks.length}
                      colour={this[v.user].colour}/>
     }));
-    //     .map((v, i) => {
-    //     let pos = this.tileList[v.where].positions[i];
-    //     pos.isEmpty = false;
-    //     this.availableSpaces = findAvailableSpaces(this.tileList);
-    //     this.user1.rocks.push(this.user1.name + i);
-    //     return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this.user1.name + '' + i}
-    //                  colour={this.user1.colour}/>
-    // });
 
 
     render() {
