@@ -1,4 +1,5 @@
 circle{
-    fill: burlywood;
     cursor: move;
+    stroke-width: 2;
+    stroke: #282c34;
 }

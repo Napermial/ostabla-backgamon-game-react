@@ -6,27 +6,36 @@ import 'react-dom'
 import User from "./User";
 
 export default class Board extends React.Component {
-    constructor(props){
-        super(props);
-        let user1 = new User({name:"Bandi"});
-    }
+    user1 = new User('Bandi', "burlywood");
+    user2 = new User('Károly', "silver");
     state = {};
     tileList = createTilesRepresentation(1200);
     availableSpaces = findAvailableSpaces(this.tileList);
-    rocks = Array(5).fill(null).map((v, i) => {
+    rocks1 = Array(5).fill(null).map((v, i) => {
         let pos = this.availableSpaces[0];
         this.tileList[pos.key].positions[pos.index].isEmpty = false;
         this.availableSpaces = findAvailableSpaces(this.tileList);
-        return <Rock xPos={pos.position.x} yPos={pos.position.y} uniqueKey={'playerOne' + i}/>
+        this.user1.rocks.push(this.user1.name+i);
+        return <Rock xPos={pos.position.x} yPos={pos.position.y} uniqueKey={this.user1.name +''+ i} colour={this.user1.colour}/>
+    });
+
+    rocks2 = Array(5).fill(null).map((v, i) => {
+        let pos = this.availableSpaces[0];
+        this.tileList[pos.key].positions[pos.index].isEmpty = false;
+        this.availableSpaces = findAvailableSpaces(this.tileList);
+        this.user2.rocks.push(this.user2.name+i);
+        return <Rock xPos={pos.position.x} yPos={pos.position.y} uniqueKey={this.user2.name +''+ i} colour={this.user2.colour}/>
     });
 
 
     render() {
         return (
             <div className="Board">
+                <h4>{this.user1.name + ':' + this.user1.extraRocks + ', ' + this.user2.name +': ' + this.user2.extraRocks}</h4>
                 <svg height={this.props.height} width={1200}>
                     {drawTiles(this.props.height)}
-                    {this.rocks}
+                    {this.rocks1}
+                    {this.rocks2}
                 </svg>
             </div>
         )

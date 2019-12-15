@@ -46,7 +46,7 @@ export default class Rock extends React.Component{
                     cx={this.props.xPos}
                     cy={this.props.yPos}
                     r={20}
-
+                    fill={this.props.colour}
                 />
             </Draggable>
 
