@@ -3,14 +3,22 @@ import Rock from "../rock/Rock";
 import Tile from "../tile/Tile";
 import React from "react";
 import 'react-dom'
+import User from "./User";
 
 export default class Board extends React.Component {
+    constructor(props){
+        super(props);
+        let user1 = new User({name:"Bandi"});
+    }
     state = {};
-    r = 40;
-    list = [...Array(5).keys()];
-    tileList = createTilesRepresentation(this.props.height);
+    tileList = createTilesRepresentation(1200);
     availableSpaces = findAvailableSpaces(this.tileList);
-    rocks = this.list.map((i) => <Rock xPos={this.availableSpaces[i].x} yPos={this.availableSpaces[i].y} uniqueKey={'playerOne' + i}/>);
+    rocks = Array(5).fill(null).map((v, i) => {
+        let pos = this.availableSpaces[0];
+        this.tileList[pos.key].positions[pos.index].isEmpty = false;
+        this.availableSpaces = findAvailableSpaces(this.tileList);
+        return <Rock xPos={pos.position.x} yPos={pos.position.y} uniqueKey={'playerOne' + i}/>
+    });
 
 
     render() {
@@ -22,7 +30,6 @@ export default class Board extends React.Component {
                 </svg>
             </div>
         )
-
     }
 }
 
@@ -40,34 +47,36 @@ function drawTiles(height) {
     return tiles
 }
 
-function createTilesRepresentation(height) {
+function createTilesRepresentation(width) {
     let tileList = [];
     for (let i = 0; i < 12; i++) {
         let topPositions = [];
         let bottomPositions = [];
         for (let j = 0; j < 5; j++) {
-            let position = { x: i * 100 + 50, y: j * 40 + 20, isEmpty: true};
+            let position = {x: i * 100 + 50, y: j * 40 + 20, isEmpty: true};
             topPositions.push(position);
-            position = {x: height - i * 100 + 50, y: 500 - j * 40 - 20, isEmpty: true};
+            position = {x: width - i * 100 - 50, y: 500 - j * 40 - 20, isEmpty: true};
             bottomPositions.push(position);
         }
         tileList.push({positions: topPositions});
         tileList.push({positions: bottomPositions});
     }
-    console.log(tileList);
     return tileList;
 }
 
 function findAvailableSpaces(tileList) {
     let availableSpaces = [];
 
-    for (let [key, value] of Object.entries(tileList)){
-        for (let poz of value.positions){
+    for (let [key, value] of Object.entries(tileList)) {
+        for (let [index,poz] of Object.entries(value.positions)) {
             if (poz.isEmpty === true) {
-                availableSpaces.push(poz);
+                availableSpaces.push({key :key, index: index, position:poz});
                 break;
             }
         }
     }
     return availableSpaces;
 }
+
+
+
