@@ -6,36 +6,44 @@ import 'react-dom'
 import User from "./User";
 
 export default class Board extends React.Component {
-    user1 = new User('Bandi', "burlywood");
-    user2 = new User('Károly', "silver");
+    user1 = new User('Bandi', "burlywood", 1);
+    user2 = new User('Károly', "silver", 2);
+
     state = {};
     tileList = createTilesRepresentation(1200);
     availableSpaces = findAvailableSpaces(this.tileList);
-    rocks1 = Array(5).fill(null).map((v, i) => {
-        let pos = this.availableSpaces[0];
-        this.tileList[pos.key].positions[pos.index].isEmpty = false;
+    rockArrays = arrayGeneratorForRocks();
+    rocks = this.rockArrays.map((v) => v.map((v, i) => {
+        let pos = this.tileList[v.where].positions[i];
+        pos.isEmpty = false;
         this.availableSpaces = findAvailableSpaces(this.tileList);
-        this.user1.rocks.push(this.user1.name+i);
-        return <Rock xPos={pos.position.x} yPos={pos.position.y} uniqueKey={this.user1.name +''+ i} colour={this.user1.colour}/>
-    });
+        if (v.user === 'user1'){
+            this.user1.rocks.push(this.user1.name + i);
+        }else {
+            this.user2.rocks.push(this.user2.name + i);
+        }
 
-    rocks2 = Array(5).fill(null).map((v, i) => {
-        let pos = this.availableSpaces[0];
-        this.tileList[pos.key].positions[pos.index].isEmpty = false;
-        this.availableSpaces = findAvailableSpaces(this.tileList);
-        this.user2.rocks.push(this.user2.name+i);
-        return <Rock xPos={pos.position.x} yPos={pos.position.y} uniqueKey={this.user2.name +''+ i} colour={this.user2.colour}/>
-    });
+        return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this[v.user] + '' + i}
+                     colour={this[v.user].colour}/>
+    }));
+    //     .map((v, i) => {
+    //     let pos = this.tileList[v.where].positions[i];
+    //     pos.isEmpty = false;
+    //     this.availableSpaces = findAvailableSpaces(this.tileList);
+    //     this.user1.rocks.push(this.user1.name + i);
+    //     return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this.user1.name + '' + i}
+    //                  colour={this.user1.colour}/>
+    // });
 
 
     render() {
         return (
             <div className="Board">
-                <h4>{this.user1.name + ':' + this.user1.extraRocks + ', ' + this.user2.name +': ' + this.user2.extraRocks}</h4>
+                <h3> 's Turn</h3>
+                <h4>{this.user1.name + ':' + this.user1.score + ', ' + this.user2.name + ': ' + this.user2.score}</h4>
                 <svg height={this.props.height} width={1200}>
                     {drawTiles(this.props.height)}
-                    {this.rocks1}
-                    {this.rocks2}
+                    {this.rocks}
                 </svg>
             </div>
         )
@@ -77,9 +85,9 @@ function findAvailableSpaces(tileList) {
     let availableSpaces = [];
 
     for (let [key, value] of Object.entries(tileList)) {
-        for (let [index,poz] of Object.entries(value.positions)) {
+        for (let [index, poz] of Object.entries(value.positions)) {
             if (poz.isEmpty === true) {
-                availableSpaces.push({key :key, index: index, position:poz});
+                availableSpaces.push({where: key, index: index, position: poz});
                 break;
             }
         }
@@ -87,5 +95,15 @@ function findAvailableSpaces(tileList) {
     return availableSpaces;
 }
 
-
+function arrayGeneratorForRocks() {
+    return Array.of(
+        Array(5).fill({where: 13, user:"user1"}),
+        Array(5).fill({where: 1, user:"user1"}),
+        Array(3).fill({where: 12, user:"user1"}),
+        Array(2).fill({where: 0, user:"user1"}),
+        Array(5).fill({where: 10, user:"user2"}),
+        Array(5).fill({where: 22, user:"user2"}),
+        Array(3).fill({where: 11, user:"user2"}),
+        Array(2).fill({where: 23, user:"user2"}));
+}
 
