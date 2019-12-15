@@ -7,10 +7,10 @@ import 'react-dom'
 export default class Board extends React.Component {
     state = {};
     r = 40;
-    list = [...Array(10).keys()];
+    list = [...Array(5).keys()];
     tileList = createTilesRepresentation(this.props.height);
-    availableSpaces = [];
-    rocks = this.list.map((i) => <Rock xPos={this.r / 2 + i * this.r} yPos={50 * i} uniqueKey={'playerOne' + i}/>);
+    availableSpaces = findAvailableSpaces(this.tileList);
+    rocks = this.list.map((i) => <Rock xPos={this.availableSpaces[i].x} yPos={this.availableSpaces[i].y} uniqueKey={'playerOne' + i}/>);
 
 
     render() {
@@ -56,4 +56,18 @@ function createTilesRepresentation(height) {
     }
     console.log(tileList);
     return tileList;
+}
+
+function findAvailableSpaces(tileList) {
+    let availableSpaces = [];
+
+    for (let [key, value] of Object.entries(tileList)){
+        for (let poz of value.positions){
+            if (poz.isEmpty === true) {
+                availableSpaces.push(poz);
+                break;
+            }
+        }
+    }
+    return availableSpaces;
 }

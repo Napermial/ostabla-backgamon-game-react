@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="grid added">
+    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
     </list>
@@ -87,7 +87,7 @@
       <workItem from="1576224040878" duration="6692000" />
       <workItem from="1576303170182" duration="9117000" />
       <workItem from="1576341336645" duration="3879000" />
-      <workItem from="1576392556135" duration="3129000" />
+      <workItem from="1576392556135" duration="5205000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
@@ -152,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576317551462</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="grid added">
+      <created>1576398369619</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1576398369619</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
