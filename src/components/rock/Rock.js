@@ -9,6 +9,7 @@ export default class Rock extends React.Component{
         this.state.key = props.uniqueKey;
         this.state.position.xPosition = props.xPos;
         this.state.position.yPosition = props.yPos;
+        this.availablePlaces = props.freePlaces;
     }
     state = {
         position : {
@@ -18,14 +19,18 @@ export default class Rock extends React.Component{
         key : null
     };
 
+
+
     onControlledDrag = (e) => {
-        let x = e.target.x;
-        let y = e.target.y;
-        this.setState({position: {x, y}});
+        let x = e.x;
+        let y = e.y;
+        console.log('targetxy'+x,y)
+        this.state.position = {xPosition:x,yPosition: y }
     };
 
 
     onControlledDragStop = (e, position) => {
+        let place = findClosestPlace(this.availablePlaces,{x:e.x,y:e.y}, this.state.position);
         console.log(e.y);
         console.log(e.x);
         this.onControlledDrag(e, position);
@@ -43,8 +48,8 @@ export default class Rock extends React.Component{
                 <circle
                     className="Rock"
                     key={this.props.uniqueKey}
-                    cx={this.props.xPos}
-                    cy={this.props.yPos}
+                    cx={this.state.position.xPosition}
+                    cy={this.state.position.yPosition}
                     r={20}
                     fill={this.props.colour}
                 />
@@ -53,4 +58,14 @@ export default class Rock extends React.Component{
     )
     }
 
+}
+
+function findClosestPlace(places, pos, original) {
+    console.log(original);
+    for(let bigger of places){
+
+           console.log( Math.sqrt(Math.pow(bigger.position.x - pos.x,2) +
+                Math.pow(bigger.position.y - pos.y, 2))
+           )
+    }
 }

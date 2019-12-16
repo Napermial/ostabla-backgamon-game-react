@@ -17,14 +17,11 @@ export default class Board extends React.Component {
         let pos = this.tileList[v.where].positions[i];
         pos.isEmpty = false;
         this.availableSpaces = findAvailableSpaces(this.tileList);
-        if (v.user === 'user1') {
-            this.user1.rocks.push(this.user1.name + i);
-        } else {
-            this.user2.rocks.push(this.user2.name + i);
-        }
+        this[v.user].rocks.push({position:pos, user:v.user, id:this[v.user].rocks.length, inStack:v.where, inPosition:i});
         return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this[v.user].name + '' + this[v.user].rocks.length}
-                     colour={this[v.user].colour}/>
+                     colour={this[v.user].colour} freePlaces={this.availableSpaces}/>
     }));
+    moveableRocks = checkMobility(this.user1.rocks);
 
 
     render() {
@@ -98,3 +95,6 @@ function arrayGeneratorForRocks() {
         Array(2).fill({where: 23, user: "user2"}));
 }
 
+function checkMobility(tileList) {
+    console.log(tileList);
+}
