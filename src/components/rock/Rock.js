@@ -16,7 +16,8 @@ export default class Rock extends React.Component{
             xPosition : this.props.xPos,
             yPosition : this.props.yPos
         },
-        key : null
+        key : null,
+        translate:'none'
     };
 
 
@@ -24,16 +25,17 @@ export default class Rock extends React.Component{
     onControlledDrag = (e) => {
         let x = e.x;
         let y = e.y;
-        console.log('targetxy'+x,y)
-        this.state.position = {xPosition:x,yPosition: y }
+        this.setState({position:{xPosition: x,yPosition: y}});
+        this.setState({translate:'none'})
     };
 
 
     onControlledDragStop = (e, position) => {
+        e.preventDefault();
+        e.stopPropagation();
         let place = findClosestPlace(this.availablePlaces,{x:e.x,y:e.y}, this.state.position);
-        console.log(e.y);
-        console.log(e.x);
-        this.onControlledDrag(e, position);
+        console.log(place);
+        this.onControlledDrag(place);
         console.log(this.state.key);
     };
 
@@ -44,6 +46,7 @@ export default class Rock extends React.Component{
         return (
             <Draggable
                 onStop={this.onControlledDragStop}
+                defaultPosition={}
             >
                 <circle
                     className="Rock"
@@ -52,6 +55,7 @@ export default class Rock extends React.Component{
                     cy={this.state.position.yPosition}
                     r={20}
                     fill={this.props.colour}
+                    transform={this.state.translate}
                 />
             </Draggable>
 
@@ -61,11 +65,28 @@ export default class Rock extends React.Component{
 }
 
 function findClosestPlace(places, pos, original) {
-    console.log(original);
+    console.log('oroginal pos ' + original.xPosition + ' , '+ original.yPosition);
+    original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition ,2) *
+        Math.pow(pos.y -original.yPosition , 2));
+    let others = [];
     for(let bigger of places){
-
-           console.log( Math.sqrt(Math.pow(bigger.position.x - pos.x,2) +
-                Math.pow(bigger.position.y - pos.y, 2))
-           )
+        others.push({
+                distance:
+                    Math.sqrt(Math.pow(pos.x - bigger.position.x ,2) *
+                    Math.pow(pos.y - bigger.position.y, 2)),
+                x:bigger.position.x,
+                y:bigger.position.y
+        })
     }
+        console.log(others);
+        console.log('original distance:'+ original.distanceFrom);
+    if (others.every((current) => {
+        console.log(original.distanceFrom < current.distance);
+        console.log(current);
+        return original.distanceFrom < current.distance}
+        )){
+        return {x:original.xPosition, y:original.yPosition}
+    }
+    return {x:100, y:100}
+
 }

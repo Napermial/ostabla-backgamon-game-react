@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,6 +22,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1UgzpK03eaqucY62bebd5c91ImO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -93,7 +99,7 @@
       <workItem from="1576392556135" duration="12803000" />
       <workItem from="1576415292809" duration="15013000" />
       <workItem from="1576442355826" duration="78000" />
-      <workItem from="1576476743749" duration="6317000" />
+      <workItem from="1576476743749" duration="16239000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
