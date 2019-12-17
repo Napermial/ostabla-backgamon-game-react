@@ -7,8 +7,6 @@ export default class Rock extends React.Component{
     constructor(props){
         super(props);
         this.state.key = props.uniqueKey;
-        this.state.position.xPosition = props.xPos;
-        this.state.position.yPosition = props.yPos;
         this.availablePlaces = props.freePlaces;
     }
     state = {
@@ -31,8 +29,7 @@ export default class Rock extends React.Component{
 
 
     onControlledDragStop = (e, position) => {
-        e.preventDefault();
-        e.stopPropagation();
+        console.log(position);
         let place = findClosestPlace(this.availablePlaces,{x:e.x,y:e.y}, this.state.position);
         console.log(place);
         this.onControlledDrag(place);
@@ -46,7 +43,6 @@ export default class Rock extends React.Component{
         return (
             <Draggable
                 onStop={this.onControlledDragStop}
-                defaultPosition={}
             >
                 <circle
                     className="Rock"
@@ -81,12 +77,21 @@ function findClosestPlace(places, pos, original) {
         console.log(others);
         console.log('original distance:'+ original.distanceFrom);
     if (others.every((current) => {
-        console.log(original.distanceFrom < current.distance);
-        console.log(current);
         return original.distanceFrom < current.distance}
         )){
         return {x:original.xPosition, y:original.yPosition}
     }
-    return {x:100, y:100}
+    let min = others.hasMin("distance");
+    console.log(min);
+    return places[others.indexOf(min)].position;
+
 
 }
+
+
+// eslint-disable-next-line no-extend-native
+Array.prototype.hasMin = function(attrib) {
+    return (this.length && this.reduce(function(prev, curr){
+        return prev[attrib] < curr[attrib] ? prev : curr;
+    })) || null;
+};
