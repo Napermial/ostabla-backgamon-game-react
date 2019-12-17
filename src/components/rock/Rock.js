@@ -74,8 +74,6 @@ function findClosestPlace(places, pos, original) {
                 y:bigger.position.y
         })
     }
-        console.log(others);
-        console.log('original distance:'+ original.distanceFrom);
     if (others.every((current) => {
         return original.distanceFrom < current.distance}
         )){
