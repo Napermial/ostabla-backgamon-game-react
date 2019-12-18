@@ -1,6 +1,7 @@
 import React from "react";
 import './Rock.css';
 import Draggable from "react-draggable";
+import Circle from "./Circle";
 
 export default class Rock extends React.Component{
 
@@ -15,39 +16,38 @@ export default class Rock extends React.Component{
             yPosition : this.props.yPos
         },
         key : null,
+        offset:0,
     };
 
 
 
-    onControlledDrag = (e) => {
-        let x = e.x;
-        let y = e.y;
-        this.setState({position:{xPosition: x,yPosition: y}});
-    };
-
-
-    onControlledDragStop = (e, position) => {
+    onControlledDragStop = (e) => {
         let place = findClosestPlace(this.availablePlaces,{x:e.x - e.target.parentNode.getBoundingClientRect().left,y:e.y - e.target.parentNode.getBoundingClientRect().top}, this.state.position);
-        this.onControlledDrag(place);
+        this.setState({position:{xPosition: place.x,yPosition: place.y}});
         e.target.setAttribute('transform', 'translate(0,0)');
     };
 
-
-
+    onControlledDrag = (e, position) => {
+        const {x, y} = position;
+        this.setState({controlledPosition: {x, y}});
+    };
 
     render() {
+
         return (
             <Draggable
-                onStop={this.onControlledDragStop}
+            onStop={this.onControlledDragStop}
+            onDrag={this.onControlledDrag}
             >
-                <circle
-                    className="Rock"
-                    key={this.props.uniqueKey}
-                    cx={this.state.position.xPosition}
-                    cy={this.state.position.yPosition}
-                    r={20}
-                    fill={this.props.colour}
-                    transform={this.state.translate}
+                <Circle uniqueKey={this.props.uniqueKey}
+                        position={this.state.position}
+                        colour={this.props.colour}
+                        translate={this.state.translate}
+                        style={this.style}
+                        onMouseDown={this.onMouseDown}
+                        onMouseUp={this.onMouseUp}
+                        onTouchStart={this.onTouchStart}
+                        onTouchEnd={this.onTouchEnd}
                 />
             </Draggable>
 
