@@ -15,7 +15,6 @@ export default class Rock extends React.Component{
             yPosition : this.props.yPos
         },
         key : null,
-        translate:'none'
     };
 
 
@@ -24,16 +23,13 @@ export default class Rock extends React.Component{
         let x = e.x;
         let y = e.y;
         this.setState({position:{xPosition: x,yPosition: y}});
-        this.setState({translate:'none'})
     };
 
 
     onControlledDragStop = (e, position) => {
-        console.log(position);
-        let place = findClosestPlace(this.availablePlaces,{x:e.x,y:e.y}, this.state.position);
-        console.log(place);
+        let place = findClosestPlace(this.availablePlaces,{x:e.x - e.target.parentNode.getBoundingClientRect().left,y:e.y - e.target.parentNode.getBoundingClientRect().top}, this.state.position);
         this.onControlledDrag(place);
-        console.log(this.state.key);
+        e.target.setAttribute('transform', 'translate(0,0)');
     };
 
 
@@ -61,9 +57,11 @@ export default class Rock extends React.Component{
 }
 
 function findClosestPlace(places, pos, original) {
-    console.log('oroginal pos ' + original.xPosition + ' , '+ original.yPosition);
+    console.log('thought position: ' + pos.x + ' : ' + pos.y);
+    console.log(original);
     original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition ,2) *
         Math.pow(pos.y -original.yPosition , 2));
+    console.log('original distance from: ' + original.distanceFrom);
     let others = [];
     for(let bigger of places){
         others.push({
@@ -75,12 +73,12 @@ function findClosestPlace(places, pos, original) {
         })
     }
     if (others.every((current) => {
+        console.log('farther distance from: ' + current.distance);
         return original.distanceFrom < current.distance}
         )){
         return {x:original.xPosition, y:original.yPosition}
     }
     let min = others.hasMin("distance");
-    console.log(min);
     return places[others.indexOf(min)].position;
 
 
