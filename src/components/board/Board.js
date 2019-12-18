@@ -13,6 +13,9 @@ export default class Board extends React.Component {
     tileList = createTilesRepresentation(1200);
     availableSpaces = findAvailableSpaces(this.tileList);
     rockArrays = arrayGeneratorForRocks();
+    handleMove(e){
+        
+    }
     rocks = this.rockArrays.map((v) => v.map((v, i) => {
         let pos = this.tileList[v.where].positions[i];
         pos.isEmpty = false;
@@ -20,7 +23,8 @@ export default class Board extends React.Component {
         let element = {position:pos, user:v.user, id:this[v.user].rocks.length, inStack:v.where, inPosition:i};
         this[v.user].rocks.push(element);
         return <Rock xPos={pos.x} yPos={pos.y} uniqueKey={this[v.user].name + '' + this[v.user].rocks.length}
-                     colour={this[v.user].colour} freePlaces={this.availableSpaces} moveable={checkMobility(element)}/>
+                     colour={this[v.user].colour} freePlaces={this.availableSpaces} moveable={checkMobility()}
+        onChange={this.handleMove}/>
     }));
 
 

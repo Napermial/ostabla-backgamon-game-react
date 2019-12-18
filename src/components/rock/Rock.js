@@ -7,6 +7,7 @@ export default class Rock extends React.Component{
 
     constructor(props){
         super(props);
+        console.log(props);
         this.state.key = props.uniqueKey;
         this.availablePlaces = props.freePlaces;
     }
@@ -22,8 +23,14 @@ export default class Rock extends React.Component{
 
 
     onControlledDragStop = (e) => {
-        let place = findClosestPlace(this.availablePlaces,{x:e.x - e.target.parentNode.getBoundingClientRect().left,y:e.y - e.target.parentNode.getBoundingClientRect().top}, this.state.position);
+        let place = findClosestPlace(
+            this.availablePlaces,{
+                x:e.x - e.target.parentNode.getBoundingClientRect().left,
+                y:e.y - e.target.parentNode.getBoundingClientRect().top
+            },
+            this.state.position);
         this.setState({position:{xPosition: place.x,yPosition: place.y}});
+        this.props.onChange(place);
         e.target.setAttribute('transform', 'translate(0,0)');
     };
 
@@ -43,6 +50,7 @@ export default class Rock extends React.Component{
                         position={this.state.position}
                         colour={this.props.colour}
                         translate={this.state.translate}
+
                         style={this.style}
                         onMouseDown={this.onMouseDown}
                         onMouseUp={this.onMouseUp}
@@ -57,8 +65,6 @@ export default class Rock extends React.Component{
 }
 
 function findClosestPlace(places, pos, original) {
-    console.log('thought position: ' + pos.x + ' : ' + pos.y);
-    console.log(original);
     original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition ,2) *
         Math.pow(pos.y -original.yPosition , 2));
     console.log('original distance from: ' + original.distanceFrom);
