@@ -7,9 +7,7 @@ export default class Rock extends React.Component{
 
     constructor(props){
         super(props);
-        console.log(props);
         this.state.key = props.uniqueKey;
-        this.availablePlaces = props.freePlaces;
     }
     state = {
         position : {
@@ -18,20 +16,36 @@ export default class Rock extends React.Component{
         },
         key : null,
         offset:0,
+        // availablePlaces: this.props.freePlaces
     };
 
 
+    // componentDidMount(){
+    //     this.setState({availablePlaces:this.props.freePlaces})
+    // }
+    //
+    // componentDidUpdate(prevProps, prevState){
+    //     console.log(prevProps.freePlaces);
+    //     if (this.props.freePlaces !== prevProps.freePlaces){
+    //         this.fetchData(this.props.freePlaces);
+    //         this.setState({availablePlaces: prevProps.freePlaces})
+    //     }
+    // }
+
+    // static getDerivedStateFromProps(props, state){
+    //     console.log(props)
+    // }
 
     onControlledDragStop = (e) => {
         let place = findClosestPlace(
-            this.availablePlaces,{
+            this.props.freePlaces,{
                 x:e.x - e.target.parentNode.getBoundingClientRect().left,
                 y:e.y - e.target.parentNode.getBoundingClientRect().top
             },
             this.state.position);
         this.setState({position:{xPosition: place.x,yPosition: place.y}});
-        this.props.onChange(place);
-        e.target.setAttribute('transform', 'translate(0,0)');
+        this.props.onMove(place);
+        // e.target.setAttribute('transform', 'translate(0,0)');
     };
 
     onControlledDrag = (e, position) => {
@@ -39,12 +53,16 @@ export default class Rock extends React.Component{
         this.setState({controlledPosition: {x, y}});
     };
 
-    render() {
+    onDragStart = (e) => {
 
+    };
+
+    render() {
         return (
             <Draggable
-            onStop={this.onControlledDragStop}
-            onDrag={this.onControlledDrag}
+                onStart={this.onDragStart.bind(this, this.state)}
+                onStop={this.onControlledDragStop}
+                onDrag={this.onControlledDrag}
             >
                 <Circle uniqueKey={this.props.uniqueKey}
                         position={this.state.position}
@@ -67,7 +85,6 @@ export default class Rock extends React.Component{
 function findClosestPlace(places, pos, original) {
     original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition ,2) *
         Math.pow(pos.y -original.yPosition , 2));
-    console.log('original distance from: ' + original.distanceFrom);
     let others = [];
     for(let bigger of places){
         others.push({
@@ -79,7 +96,6 @@ function findClosestPlace(places, pos, original) {
         })
     }
     if (others.every((current) => {
-        console.log('farther distance from: ' + current.distance);
         return original.distanceFrom < current.distance}
         )){
         return {x:original.xPosition, y:original.yPosition}

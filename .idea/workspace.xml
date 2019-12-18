@@ -4,7 +4,6 @@
     <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/rock/Circle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Circle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
