@@ -6,13 +6,13 @@ import 'react-dom'
 import User from "./User";
 
 export default class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.handleMove = this.handleMove.bind(this);
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // this.handleMove = this.handleMove.bind(this);
+    // }
 
-    user1 = new User('Bandi', "burlywood", 1);
-    user2 = new User('Károly', "silver", 2);
+    user1 = new User('Ferenc', "burlywood", 1);
+    user2 = new User('József', "silver", 2);
 
     tileList = createTilesRepresentation(1200);
     state = {
@@ -59,7 +59,7 @@ export default class Board extends React.Component {
         return (
             <div className="Board">
                 <h3> 's Turn roll: ?</h3>
-                <h4>{this.user1.name + ':' + this.user1.score + ', ' + this.user2.name + ': ' + this.user2.score}</h4>
+                <h4>{this.user1.name + ': ' + this.user1.score + ', ' + this.user2.name + ': ' + this.user2.score}</h4>
                 <svg height={this.props.height} width={1200}>
                     {drawTiles(this.props.height)}
                     {this.rocks}
