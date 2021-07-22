@@ -1,3 +1,9 @@
+This is a basic backgammon game in React.
+Implemented:
+- rendering gamespace with rocks
+- turns 
+- moving rocks to available places only
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
