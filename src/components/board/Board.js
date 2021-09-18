@@ -17,7 +17,9 @@ export default class Board extends React.Component {
     tileList = createTilesRepresentation(1200);
     state = {
         moveableRocks: [],
-        availableSpaces: findAvailableSpaces(this.tileList)
+        availableSpaces: this.findAvailableSpaces(),
+        round:0,
+        roll:Math.floor(Math.random() * 6)
     };
     rockArrays = arrayGeneratorForRocks();
     handleMove = (e) => {
@@ -29,24 +31,25 @@ export default class Board extends React.Component {
                 }
             }
         }
-        this.setState( {availableSpaces: findAvailableSpaces(this.tileList)})
+        this.setState( {availableSpaces: this.findAvailableSpaces()});
+        for (let rock of this.rocks){
+            rock.freePlaces = this.findAvailableSpaces();
+        }
+        console.log(this.findAvailableSpaces())
     };
 
-    onStartHandle = (e) => {
-        console.log(e);
-    };
+
 
     rocks = this.rockArrays.map((v) => v.map((v, i) => {
         let pos = this.tileList[v.where].positions[i];
         pos.isEmpty = false;
-        this.setState({availableSpaces: findAvailableSpaces(this.tileList)});
         let element = {position: pos, user: v.user, id: this[v.user].rocks.length, inStack: v.where, inPosition: i};
         this[v.user].rocks.push(element);
         return <Rock xPos={pos.x}
                      yPos={pos.y}
                      uniqueKey={this[v.user].name + '' + this[v.user].rocks.length}
                      colour={this[v.user].colour}
-                     freePlaces={findAvailableSpaces(this.tileList)}
+                     freePlaces={this.findAvailableSpaces()}
                      moveable={0}
                      onMove={this.handleMove}
                      onStart={this.onStartHandle}
@@ -54,13 +57,27 @@ export default class Board extends React.Component {
         />
     }));
 
+    findAvailableSpaces() {
+        let availableSpaces = [];
+
+        for (let [key, value] of Object.entries(this.tileList)) {
+            for (let [index, poz] of Object.entries(value.positions)) {
+                if (poz.isEmpty === true) {
+                    availableSpaces.push({where: key, index: index, position: poz});
+                    break;
+                }
+            }
+        }
+        return availableSpaces;
+    };
+
     render() {
         checkMobility(this.tileList);
         return (
             <div className="Board">
-                <h3> 's Turn roll: ?</h3>
+                <h3> 's Turn roll: {this.state.roll}</h3>
                 <h4>{this.user1.name + ': ' + this.user1.score + ', ' + this.user2.name + ': ' + this.user2.score}</h4>
-                <svg height={this.props.height} width={1200}>
+                <svg height={this.props.height} key='boardSVG' width={1200}>
                     {drawTiles(this.props.height)}
                     {this.rocks}
                 </svg>
@@ -100,19 +117,7 @@ function createTilesRepresentation(width) {
     return tileList;
 }
 
-function findAvailableSpaces(tileList) {
-    let availableSpaces = [];
 
-    for (let [key, value] of Object.entries(tileList)) {
-        for (let [index, poz] of Object.entries(value.positions)) {
-            if (poz.isEmpty === true) {
-                availableSpaces.push({where: key, index: index, position: poz});
-                break;
-            }
-        }
-    }
-    return availableSpaces;
-}
 
 function arrayGeneratorForRocks() {
     return Array.of(
