@@ -62,15 +62,18 @@ export default class Board extends React.Component {
                      moveable={true}
                      onMove={this.handleMove}
                      beforeMove={this.checkMobility.bind(this)}
-                     //beforeMove={this.checkMobility}
         />
     }));
 
-    checkMobility(place) {
-        console.log(this.rocks)
-
-
-
+    checkMobility(p) {
+        for (let tile of this.tileList){
+          for (let position of tile.positions){
+              console.log(p.target)
+              console.log(position.x)
+              if (p.target.cx === position.x){
+                }
+          }
+        }
     }
 
     render() {

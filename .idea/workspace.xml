@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="experimenting with state changing">
+    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.js" afterDir="false" />
@@ -21,6 +21,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1UgzpK03eaqucY62bebd5c91ImO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -93,7 +101,7 @@
       <workItem from="1626066083073" duration="189000" />
       <workItem from="1626197025950" duration="129000" />
       <workItem from="1631954767559" duration="7903000" />
-      <workItem from="1632030638248" duration="14899000" />
+      <workItem from="1632030638248" duration="16449000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
@@ -221,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632034340854</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="working with state">
+      <created>1632074064588</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1632074064588</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +273,8 @@
     <MESSAGE value="unque keys finally" />
     <MESSAGE value="resolving props issues -  Board handles free places" />
     <MESSAGE value="experimenting with state changing" />
-    <option name="LAST_COMMIT_MESSAGE" value="experimenting with state changing" />
+    <MESSAGE value="working with state" />
+    <option name="LAST_COMMIT_MESSAGE" value="working with state" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

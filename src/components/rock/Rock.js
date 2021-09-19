@@ -46,7 +46,7 @@ export default class Rock extends React.Component {
                 onStart={this.props.beforeMove}
                 onStop={this.onControlledDragStop}
                 onDrag={this.onControlledDrag}
-                disabled={!this.props.moveable}
+                //disabled={!this.props.moveable}
             >
                 <Circle uniqueKey={this.props.uniqueKey}
                         position={this.state.position}
