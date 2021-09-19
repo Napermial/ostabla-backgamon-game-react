@@ -8,6 +8,7 @@ export default class Rock extends React.Component{
     constructor(props){
         super(props);
         this.state.key = props.uniqueKey;
+        this.onMove = props.onMove
     }
     state = {
         position : {
@@ -66,7 +67,7 @@ export default class Rock extends React.Component{
 
 function findClosestPlace(places, pos, original) {
     original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition ,2) *
-        Math.pow(pos.y -original.yPosition , 2));
+        Math.pow(pos.y - original.yPosition , 2));
     let others = [];
     for(let bigger of places){
         others.push({

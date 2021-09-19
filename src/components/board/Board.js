@@ -6,38 +6,48 @@ import 'react-dom'
 import User from "./User";
 
 export default class Board extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     // this.handleMove = this.handleMove.bind(this);
-    // }
+    constructor(props) {
+        super(props);
+        this.handleMove = this.handleMove.bind(this);
+        this.state = {
+            moveableRocks: [],
+            availableSpaces: this.findAvailableSpaces(),
+            round: 0,
+            roll: Math.floor(Math.random() * 6)
+        };
+    }
 
     user1 = new User('Ferenc', "burlywood", 1);
     user2 = new User('József', "silver", 2);
 
     tileList = createTilesRepresentation(1200);
-    state = {
-        moveableRocks: [],
-        availableSpaces: this.findAvailableSpaces(),
-        round:0,
-        roll:Math.floor(Math.random() * 6)
-    };
+
     rockArrays = arrayGeneratorForRocks();
     handleMove = (e) => {
-        for (let [listIndex, list] of this.tileList.entries()){
-            for (let [elementIndex, element] of list.positions.entries()){
-                if (element.x === e.x && element.y === e.y){
+        for (let [listIndex, list] of this.tileList.entries()) {
+            for (let [elementIndex, element] of list.positions.entries()) {
+                if (element.x === e.x && element.y === e.y) {
                     this.tileList[listIndex].positions[elementIndex].isEmpty = false;
                     break;
                 }
             }
         }
-        this.setState( {availableSpaces: this.findAvailableSpaces()});
-        for (let rock of this.rocks){
-            rock.freePlaces = this.findAvailableSpaces();
-        }
-        console.log(this.findAvailableSpaces())
+        this.setState({availableSpaces: this.findAvailableSpaces()});
     };
 
+    findAvailableSpaces() {
+        let availableSpaces = [];
+        console.log(this.tileList)
+        for (let [key, value] of Object.entries(this.tileList)) {
+            for (let [index, poz] of Object.entries(value.positions)) {
+                if (poz.isEmpty === true) {
+                    availableSpaces.push({where: key, index: index, position: poz});
+                    break;
+                }
+            }
+        }
+        return availableSpaces;
+    };
 
 
     rocks = this.rockArrays.map((v) => v.map((v, i) => {
@@ -53,23 +63,10 @@ export default class Board extends React.Component {
                      moveable={0}
                      onMove={this.handleMove}
                      onStart={this.onStartHandle}
-                     // onChange={this.handleMove}
+            // onChange={this.handleMove}
         />
     }));
 
-    findAvailableSpaces() {
-        let availableSpaces = [];
-
-        for (let [key, value] of Object.entries(this.tileList)) {
-            for (let [index, poz] of Object.entries(value.positions)) {
-                if (poz.isEmpty === true) {
-                    availableSpaces.push({where: key, index: index, position: poz});
-                    break;
-                }
-            }
-        }
-        return availableSpaces;
-    };
 
     render() {
         checkMobility(this.tileList);
@@ -94,8 +91,28 @@ function drawTiles(height) {
     let colour = ['black', 'red'];
     for (let i = 0; i < 12; i++) {
         colour.reverse();
-        tiles.push(Tile(distance * i, ceiling, distance + distance * i, ceiling, distance * i + (distance / 2), 2 * distance, colour[0], 'top' + i));
-        tiles.push(Tile(distance * i, height, distance + distance * i, height, distance * i + (distance / 2), height - (2 * distance), colour[1], 'bottom' + i));
+        tiles.push(
+            Tile(
+                distance * i,
+                ceiling,
+                distance + distance * i,
+                ceiling,
+                distance * i + (distance / 2),
+                2 * distance, colour[0],
+                'top' + i)
+        );
+        tiles.push(
+            Tile(
+                distance * i,
+                height,
+                distance + distance * i,
+                height,
+                distance * i + (distance / 2),
+                height - (2 * distance),
+                colour[1],
+                'bottom' + i
+            )
+        );
     }
     return tiles
 }
@@ -116,7 +133,6 @@ function createTilesRepresentation(width) {
     }
     return tileList;
 }
-
 
 
 function arrayGeneratorForRocks() {
