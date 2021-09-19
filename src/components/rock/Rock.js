@@ -3,49 +3,50 @@ import './Rock.css';
 import Draggable from "react-draggable";
 import Circle from "./Circle";
 
-export default class Rock extends React.Component{
+export default class Rock extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state.key = props.uniqueKey;
-        this.onMove = props.onMove
+        this.onMove = props.onMove;
+        //this.beforeMove = props.beforeMove.bind(this)
     }
+
     state = {
-        position : {
-            xPosition : this.props.xPos,
-            yPosition : this.props.yPos
+        position: {
+            xPosition: this.props.xPos,
+            yPosition: this.props.yPos
         },
-        key : null,
-        offset:0,
+        key: null,
+        offset: 0,
         availablePlaces: this.props.freePlaces
     };
 
 
     onControlledDragStop = (e) => {
         let place = findClosestPlace(
-            this.state.availablePlaces,{
-                x:e.x - e.target.parentNode.getBoundingClientRect().left,
-                y:e.y - e.target.parentNode.getBoundingClientRect().top
+            this.state.availablePlaces, {
+                x: e.x - e.target.parentNode.getBoundingClientRect().left,
+                y: e.y - e.target.parentNode.getBoundingClientRect().top
             },
             this.state.position);
-        this.setState({position:{xPosition: place.x,yPosition: place.y}});
-        this.props.onMove(place);
-        console.log(this.props)
+        this.setState({position: {xPosition: place.x, yPosition: place.y}});
+        this.props.onMove(e);
     };
 
     onControlledDrag = (e, position) => {
         const {x, y} = position;
-        this.setState({controlledPosition: {x, y}});
+        this.setState({controlledPosition: {x, y}, position: {xPosition: x, yPosition: y}});
     };
 
-    onDragStart = () => {};
 
     render() {
         return (
             <Draggable
-                onStart={this.onDragStart.bind(this, this.state)}
+                onStart={this.props.beforeMove}
                 onStop={this.onControlledDragStop}
                 onDrag={this.onControlledDrag}
+                disabled={!this.props.moveable}
             >
                 <Circle uniqueKey={this.props.uniqueKey}
                         position={this.state.position}
@@ -60,28 +61,29 @@ export default class Rock extends React.Component{
                 />
             </Draggable>
 
-    )
+        )
     }
 
 }
 
 function findClosestPlace(places, pos, original) {
-    original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition ,2) *
-        Math.pow(pos.y - original.yPosition , 2));
+    original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition, 2) *
+        Math.pow(pos.y - original.yPosition, 2));
     let others = [];
-    for(let bigger of places){
+    for (let bigger of places) {
         others.push({
-                distance:
-                    Math.sqrt(Math.pow(pos.x - bigger.position.x ,2) *
+            distance:
+                Math.sqrt(Math.pow(pos.x - bigger.position.x, 2) *
                     Math.pow(pos.y - bigger.position.y, 2)),
-                x:bigger.position.x,
-                y:bigger.position.y
+            x: bigger.position.x,
+            y: bigger.position.y
         })
     }
     if (others.every((current) => {
-        return original.distanceFrom < current.distance}
-        )){
-        return {x:original.xPosition, y:original.yPosition}
+            return original.distanceFrom < current.distance
+        }
+    )) {
+        return {x: original.xPosition, y: original.yPosition}
     }
     let min = others.hasMin("distance");
     return places[others.indexOf(min)].position;
@@ -91,8 +93,8 @@ function findClosestPlace(places, pos, original) {
 
 
 // eslint-disable-next-line no-extend-native
-Array.prototype.hasMin = function(attrib) {
-    return (this.length && this.reduce(function(prev, curr){
+Array.prototype.hasMin = function (attrib) {
+    return (this.length && this.reduce(function (prev, curr) {
         return prev[attrib] < curr[attrib] ? prev : curr;
     })) || null;
 };

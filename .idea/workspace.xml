@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
+    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="experimenting with state changing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.js" afterDir="false" />
@@ -93,7 +93,7 @@
       <workItem from="1626066083073" duration="189000" />
       <workItem from="1626197025950" duration="129000" />
       <workItem from="1631954767559" duration="7903000" />
-      <workItem from="1632030638248" duration="2823000" />
+      <workItem from="1632030638248" duration="14899000" />
     </task>
     <task id="LOCAL-00001" summary="baisic skeleton">
       <created>1575796684272</created>
@@ -214,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631960411726</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="experimenting with state changing">
+      <created>1632034340854</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1632034340854</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +257,8 @@
     <MESSAGE value="game table initialization" />
     <MESSAGE value="unque keys finally" />
     <MESSAGE value="resolving props issues -  Board handles free places" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolving props issues -  Board handles free places" />
+    <MESSAGE value="experimenting with state changing" />
+    <option name="LAST_COMMIT_MESSAGE" value="experimenting with state changing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

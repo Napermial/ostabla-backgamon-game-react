@@ -37,7 +37,6 @@ export default class Board extends React.Component {
 
     findAvailableSpaces() {
         let availableSpaces = [];
-        console.log(this.tileList)
         for (let [key, value] of Object.entries(this.tileList)) {
             for (let [index, poz] of Object.entries(value.positions)) {
                 if (poz.isEmpty === true) {
@@ -60,16 +59,21 @@ export default class Board extends React.Component {
                      uniqueKey={this[v.user].name + '' + this[v.user].rocks.length}
                      colour={this[v.user].colour}
                      freePlaces={this.findAvailableSpaces()}
-                     moveable={0}
+                     moveable={true}
                      onMove={this.handleMove}
-                     onStart={this.onStartHandle}
-            // onChange={this.handleMove}
+                     beforeMove={this.checkMobility.bind(this)}
+                     //beforeMove={this.checkMobility}
         />
     }));
 
+    checkMobility(place) {
+        console.log(this.rocks)
+
+
+
+    }
 
     render() {
-        checkMobility(this.tileList);
         return (
             <div className="Board">
                 <h3> 's Turn roll: {this.state.roll}</h3>
@@ -145,9 +149,4 @@ function arrayGeneratorForRocks() {
         Array(5).fill({where: 22, user: "user2"}),
         Array(3).fill({where: 11, user: "user2"}),
         Array(2).fill({where: 23, user: "user2"}));
-}
-
-
-function checkMobility(tileList) {
-    // console.log(tileList);
 }
