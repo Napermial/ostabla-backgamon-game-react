@@ -9,11 +9,14 @@ export default class Board extends React.Component {
     constructor(props) {
         super(props);
         this.handleMove = this.handleMove.bind(this);
+        this.user1 = new User('Ferenc', "burlywood", 1);
+        this.user2 = new User('József', "silver", 2);
         this.state = {
             moveableRocks: [],
             availableSpaces: this.findAvailableSpaces(),
             round: 0,
-            roll: Math.floor(Math.random() * 6)
+            roll: Math.floor(Math.random() * 6),
+            currentPlayer: this.user1
         };
     }
 
@@ -23,7 +26,7 @@ export default class Board extends React.Component {
     tileList = createTilesRepresentation(1200);
 
     rockArrays = arrayGeneratorForRocks();
-    handleMove = (e) => {
+    handleMove = () => {
         let playerRocks = document.querySelectorAll(".Circle")
         for (let tile of this.tileList){
             for (let position of tile.positions){
@@ -37,8 +40,18 @@ export default class Board extends React.Component {
                 }
             }
         }
-        console.log(this.tileList)
+        this.handleTurn()
     };
+
+    handleTurn = () => {
+        if (this.state.currentPlayer === this.user1){
+            this.setState({currentPlayer: this.user2})
+        }else{
+            this.setState({currentPlayer: this.user1})
+        }
+
+        this.setState({roll:Math.floor(Math.random() * 6)})
+    }
 
     findAvailableSpaces() {
         let availableSpaces = [];
@@ -77,7 +90,7 @@ export default class Board extends React.Component {
     render() {
         return (
             <div className="Board">
-                <h3> 's Turn roll: {this.state.roll}</h3>
+                <h3> {this.state.currentPlayer.name} 's Turn roll: {this.state.roll}</h3>
                 <h4>{this.user1.name + ': ' + this.user1.score + ', ' + this.user2.name + ': ' + this.user2.score}</h4>
                 <svg height={this.props.height} key='boardSVG' width={1200}>
                     {drawTiles(this.props.height)}
