@@ -24,15 +24,20 @@ export default class Board extends React.Component {
 
     rockArrays = arrayGeneratorForRocks();
     handleMove = (e) => {
-        for (let [listIndex, list] of this.tileList.entries()) {
-            for (let [elementIndex, element] of list.positions.entries()) {
-                if (element.x === e.x && element.y === e.y) {
-                    this.tileList[listIndex].positions[elementIndex].isEmpty = false;
-                    break;
+        let playerRocks = document.querySelectorAll(".Circle")
+        for (let tile of this.tileList){
+            for (let position of tile.positions){
+                position.isEmpty = true;
+                for (let playerRock of playerRocks){
+                    if (position.x === playerRock.cx.baseVal.value
+                        && position.y === playerRock.cy.baseVal.value){
+                        position.isEmpty = false;
+                        break;
+                    }
                 }
             }
         }
-        this.setState({availableSpaces: this.findAvailableSpaces()});
+        console.log(this.tileList)
     };
 
     findAvailableSpaces() {
@@ -52,6 +57,7 @@ export default class Board extends React.Component {
     rocks = this.rockArrays.map((v) => v.map((v, i) => {
         let pos = this.tileList[v.where].positions[i];
         pos.isEmpty = false;
+        this.setState({availableSpaces: findAvailableSpaces(this.tileList)});
         let element = {position: pos, user: v.user, id: this[v.user].rocks.length, inStack: v.where, inPosition: i};
         this[v.user].rocks.push(element);
         return <Rock xPos={pos.x}
@@ -65,15 +71,7 @@ export default class Board extends React.Component {
         />
     }));
 
-    checkMobility(p) {
-        for (let tile of this.tileList){
-          for (let position of tile.positions){
-              console.log(p.target)
-              console.log(position.x)
-              if (p.target.cx === position.x){
-                }
-          }
-        }
+    checkMobility() {
     }
 
     render() {
@@ -141,6 +139,19 @@ function createTilesRepresentation(width) {
     return tileList;
 }
 
+function findAvailableSpaces(tileList) {
+    let availableSpaces = [];
+
+    for (let [key, value] of Object.entries(tileList)) {
+        for (let [index, poz] of Object.entries(value.positions)) {
+            if (poz.isEmpty === true) {
+                availableSpaces.push({where: key, index: index, position: poz});
+                break;
+            }
+        }
+    }
+    return availableSpaces;
+}
 
 function arrayGeneratorForRocks() {
     return Array.of(
