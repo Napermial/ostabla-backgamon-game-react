@@ -4,6 +4,10 @@ import Draggable from "react-draggable";
 import Circle from "./Circle";
 
 export default class Rock extends React.Component {
+    /**
+     * This class is responsible for handling visual appearance and state of position and free places in the grid
+     * @param props
+     */
 
     constructor(props) {
         super(props);
@@ -21,11 +25,22 @@ export default class Rock extends React.Component {
         availablePlaces: this.props.freePlaces
     };
 
-    getPosition(){
-        return this.state.position
-    }
+    /**
+     * continously updates the position of the Rock
+     * @param e drag event
+     * @param position
+     */
+    onControlledDrag = (e, position) => {
+        const {x, y} = position;
+        this.setState({controlledPosition: {x, y}, position: {xPosition: x, yPosition: y}});
+    };
 
+    /**
+     * finds the closest free place in the grid and snaps to it, updates position based on closest place
+     * @param e mousedown event
+     */
     onControlledDragStop = (e) => {
+
         let place = findClosestPlace(
             this.state.availablePlaces, {
                 x: e.x - e.target.parentNode.getBoundingClientRect().left,
@@ -36,11 +51,6 @@ export default class Rock extends React.Component {
         this.props.onMove(e);
     };
 
-    onControlledDrag = (e, position) => {
-        const {x, y} = position;
-        this.setState({controlledPosition: {x, y}, position: {xPosition: x, yPosition: y}});
-    };
-
 
     render() {
         return (
@@ -48,7 +58,6 @@ export default class Rock extends React.Component {
                 onStart={this.props.beforeMove}
                 onStop={this.onControlledDragStop}
                 onDrag={this.onControlledDrag}
-                //disabled={!this.props.moveable}
             >
                 <Circle uniqueKey={this.props.uniqueKey}
                         position={this.state.position}
@@ -69,6 +78,13 @@ export default class Rock extends React.Component {
 
 }
 
+/**
+ * finds the closest of the possible free places to snap to or back to the original position if that is closest
+ * @param places places available
+ * @param pos current position
+ * @param original from where the drag originates
+ * @returns {{x: *, y: *}|*} position
+ */
 function findClosestPlace(places, pos, original) {
     original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition, 2) *
         Math.pow(pos.y - original.yPosition, 2));
@@ -94,7 +110,11 @@ function findClosestPlace(places, pos, original) {
 
 }
 
-
+/**
+ * function to check if an attribute has the minimum value
+ * @param attrib
+ * @returns {*|null}
+ */
 // eslint-disable-next-line no-extend-native
 Array.prototype.hasMin = function (attrib) {
     return (this.length && this.reduce(function (prev, curr) {
