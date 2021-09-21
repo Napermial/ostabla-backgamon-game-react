@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="">
+    <list default="true" id="e0ef52ff-2356-4084-aa25-a32a1c119751" name="Default Changelist" comment="rock moving">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/board/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/board/Board.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/rock/Rock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rock/Rock.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632207466318</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="adding unique keys">
+      <created>1632208227554</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1632208227554</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +309,8 @@
     <MESSAGE value="rolling is displayed" />
     <MESSAGE value="rock documented" />
     <MESSAGE value="Board / used documented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Board / used documented" />
+    <MESSAGE value="adding unique keys" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding unique keys" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

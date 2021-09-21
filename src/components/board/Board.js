@@ -35,12 +35,12 @@ export default class Board extends React.Component {
      */
     handleMove = () => {
         let playerRocks = document.querySelectorAll(".Circle")
-        for (let tile of this.tileList){
-            for (let position of tile.positions){
+        for (let tile of this.tileList) {
+            for (let position of tile.positions) {
                 position.isEmpty = true;
-                for (let playerRock of playerRocks){
+                for (let playerRock of playerRocks) {
                     if (position.x === playerRock.cx.baseVal.value
-                        && position.y === playerRock.cy.baseVal.value){
+                        && position.y === playerRock.cy.baseVal.value) {
                         position.isEmpty = false;
                         break;
                     }
@@ -54,13 +54,13 @@ export default class Board extends React.Component {
      * changes user and rereolls the dice
      */
     handleTurn = () => {
-        if (this.state.currentPlayer === this.user1){
+        if (this.state.currentPlayer === this.user1) {
             this.setState({currentPlayer: this.user2})
-        }else{
+        } else {
             this.setState({currentPlayer: this.user1})
         }
         this.setState({availableSpaces: findAvailableSpaces(this.tileList)});
-        this.setState({roll:Math.floor(Math.random() * 6) + 1 })
+        this.setState({roll: Math.floor(Math.random() * 6) + 1})
     }
 
     /**
@@ -110,12 +110,12 @@ export default class Board extends React.Component {
      * @returns {boolean} the mobility of the Rock
      */
     checkMobility(e) {
-        for (let tile of this.tileList){
-            for(let pos of tile.positions){
-                for(let rockStack of this.rocks){
-                    for (let rock of rockStack){
-                        if (pos.x === e.target.cx.baseVal.value && pos.y === e.target.cy.baseVal.value
-                            && rock.props.owner === this.state.currentPlayer){
+        for (let tile of this.tileList) {
+            for (let pos of tile.positions) {
+                for (let rockStack of this.rocks) {
+                    for (let rock of rockStack) {
+                        if (pos.x === e.target.cx.baseVal.value && pos.y === e.target.cy.baseVal.value &&
+                            rock.props.owner === this.state.currentPlayer.name) {
                             return true
                         }
                     }
