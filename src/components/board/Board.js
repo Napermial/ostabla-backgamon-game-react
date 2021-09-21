@@ -59,7 +59,7 @@ export default class Board extends React.Component {
         }else{
             this.setState({currentPlayer: this.user1})
         }
-
+        this.setState({availableSpaces: findAvailableSpaces(this.tileList)});
         this.setState({roll:Math.floor(Math.random() * 6) + 1 })
     }
 
@@ -87,12 +87,12 @@ export default class Board extends React.Component {
     rocks = this.rockArrays.map((v) => v.map((v, i) => {
         let pos = this.tileList[v.where].positions[i];
         pos.isEmpty = false;
-        this.setState({availableSpaces: findAvailableSpaces(this.tileList)});
         let element = {position: pos, user: v.user, id: this[v.user].rocks.length, inStack: v.where, inPosition: i};
         this[v.user].rocks.push(element);
         return <Rock xPos={pos.x}
                      yPos={pos.y}
                      uniqueKey={this[v.user].name + '' + this[v.user].rocks.length}
+                     key={this[v.user].name + '' + this[v.user].rocks.length}
                      id={this[v.user].name + '' + this[v.user].rocks.length}
                      owner={this[v.user].name}
                      colour={this[v.user].colour}
@@ -130,7 +130,7 @@ export default class Board extends React.Component {
             <div className="Board">
                 <h3> {this.state.currentPlayer.name} 's Turn roll: {this.state.roll}</h3>
                 <h4>{this.user1.name + ': ' + this.user1.score + ', ' + this.user2.name + ': ' + this.user2.score}</h4>
-                <svg height={this.props.height} key='boardSVG' width={1200}>
+                <svg height={this.props.height} key={'boardSVG'} width={1200}>
                     {drawTiles(this.props.height)}
                     {this.rocks}
                 </svg>

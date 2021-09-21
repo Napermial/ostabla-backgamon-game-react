@@ -10,7 +10,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <Board height={500}/>
+                <Board key={'board'} height={500}/>
             </div>
         )
     }
