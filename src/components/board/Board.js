@@ -15,7 +15,7 @@ export default class Board extends React.Component {
             moveableRocks: [],
             availableSpaces: this.findAvailableSpaces(),
             round: 0,
-            roll: Math.floor(Math.random() * 6),
+            roll: Math.floor(Math.random() * 6) + 1,
             currentPlayer: this.user1
         };
     }
@@ -50,7 +50,7 @@ export default class Board extends React.Component {
             this.setState({currentPlayer: this.user1})
         }
 
-        this.setState({roll:Math.floor(Math.random() * 6)})
+        this.setState({roll:Math.floor(Math.random() * 6) + 1 })
     }
 
     findAvailableSpaces() {
@@ -76,6 +76,8 @@ export default class Board extends React.Component {
         return <Rock xPos={pos.x}
                      yPos={pos.y}
                      uniqueKey={this[v.user].name + '' + this[v.user].rocks.length}
+                     id={this[v.user].name + '' + this[v.user].rocks.length}
+                     owner={this[v.user].name}
                      colour={this[v.user].colour}
                      freePlaces={this.findAvailableSpaces()}
                      moveable={true}
@@ -84,7 +86,20 @@ export default class Board extends React.Component {
         />
     }));
 
-    checkMobility() {
+    checkMobility(e) {
+        for (let tile of this.tileList){
+            for(let pos of tile.positions){
+                for(let rockStack of this.rocks){
+                    for (let rock of rockStack){
+                        if (pos.x === e.target.cx.baseVal.value && pos.y === e.target.cy.baseVal.value
+                            && rock.props.owner === this.state.currentPlayer){
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        //return false;
     }
 
     render() {

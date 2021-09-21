@@ -9,7 +9,6 @@ export default class Rock extends React.Component {
         super(props);
         this.state.key = props.uniqueKey;
         this.onMove = props.onMove;
-        //this.beforeMove = props.beforeMove.bind(this)
     }
 
     state = {
@@ -22,6 +21,9 @@ export default class Rock extends React.Component {
         availablePlaces: this.props.freePlaces
     };
 
+    getPosition(){
+        return this.state.position
+    }
 
     onControlledDragStop = (e) => {
         let place = findClosestPlace(
@@ -52,7 +54,8 @@ export default class Rock extends React.Component {
                         position={this.state.position}
                         colour={this.props.colour}
                         translate={this.state.translate}
-
+                        id={this.props.id}
+                        owner={this.props.owner}
                         style={this.style}
                         onMouseDown={this.onMouseDown}
                         onMouseUp={this.onMouseUp}
