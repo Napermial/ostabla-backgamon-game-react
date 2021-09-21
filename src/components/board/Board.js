@@ -5,6 +5,9 @@ import React from "react";
 import 'react-dom'
 import User from "./User";
 
+/**
+ * handles most of the states from user state to rocks on the Board
+ */
 export default class Board extends React.Component {
     constructor(props) {
         super(props);
@@ -26,6 +29,10 @@ export default class Board extends React.Component {
     tileList = createTilesRepresentation(1200);
 
     rockArrays = arrayGeneratorForRocks();
+
+    /**
+     * updates the Rock positions based on the DOM
+     */
     handleMove = () => {
         let playerRocks = document.querySelectorAll(".Circle")
         for (let tile of this.tileList){
@@ -43,6 +50,9 @@ export default class Board extends React.Component {
         this.handleTurn()
     };
 
+    /**
+     * changes user and rereolls the dice
+     */
     handleTurn = () => {
         if (this.state.currentPlayer === this.user1){
             this.setState({currentPlayer: this.user2})
@@ -53,6 +63,10 @@ export default class Board extends React.Component {
         this.setState({roll:Math.floor(Math.random() * 6) + 1 })
     }
 
+    /**
+     * iterates over the representation and returns the outermost rock position that is not full
+     * @returns {[]} the tiles where there is free space
+     */
     findAvailableSpaces() {
         let availableSpaces = [];
         for (let [key, value] of Object.entries(this.tileList)) {
@@ -66,7 +80,10 @@ export default class Board extends React.Component {
         return availableSpaces;
     };
 
-
+    /**
+     * creates the Rocks themselves from the prepared lists to the correnct positions
+     * @type [Rock]
+     */
     rocks = this.rockArrays.map((v) => v.map((v, i) => {
         let pos = this.tileList[v.where].positions[i];
         pos.isEmpty = false;
@@ -86,6 +103,12 @@ export default class Board extends React.Component {
         />
     }));
 
+    /**
+     * traverses the tiles and the rocks to determine if the rock is moveable
+     * - the correct user tries to move them and the rock is in a moveable position
+     * @param e event of mousedown
+     * @returns {boolean} the mobility of the Rock
+     */
     checkMobility(e) {
         for (let tile of this.tileList){
             for(let pos of tile.positions){
@@ -99,7 +122,7 @@ export default class Board extends React.Component {
                 }
             }
         }
-        //return false;
+        return false;
     }
 
     render() {
@@ -116,7 +139,11 @@ export default class Board extends React.Component {
     }
 }
 
-
+/**
+ * creates the Tiles which are positioned on the Board
+ * @param height height of the Board
+ * @returns {Tile[]}
+ */
 function drawTiles(height) {
     let ceiling = 0;
     let distance = 100;
@@ -150,6 +177,11 @@ function drawTiles(height) {
     return tiles
 }
 
+/**
+ * Calculates the positions and the size of the Tiles - the triangles
+ * @param width widthe of the Board
+ * @returns {[]} tiles as a datastructure
+ */
 function createTilesRepresentation(width) {
     let tileList = [];
     for (let i = 0; i < 12; i++) {
@@ -167,6 +199,11 @@ function createTilesRepresentation(width) {
     return tileList;
 }
 
+/**
+ * searches for non full positions where another Rock can be placed
+ * @param tileList grid representation of Tile places where Rocks can be placed
+ * @returns {[]} list of available places in the grid
+ */
 function findAvailableSpaces(tileList) {
     let availableSpaces = [];
 
@@ -181,6 +218,10 @@ function findAvailableSpaces(tileList) {
     return availableSpaces;
 }
 
+/**
+ * determines to which position of the Board a Rock needs to be placed for the classical allignment
+ * @returns {any[][]} Rock places
+ */
 function arrayGeneratorForRocks() {
     return Array.of(
         Array(5).fill({where: 13, user: "user1"}),

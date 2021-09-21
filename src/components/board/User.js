@@ -1,4 +1,6 @@
-
+/**
+ * stores the data of the user
+ */
 export default class User {
     constructor(name, colour, id){
         this.name = name;
