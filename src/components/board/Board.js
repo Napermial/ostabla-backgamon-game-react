@@ -96,11 +96,30 @@ export default class Board extends React.Component {
                      owner={this[v.user].name}
                      colour={this[v.user].colour}
                      freePlaces={this.findAvailableSpaces.bind(this)}
-                     moveable={true}
                      onMove={this.handleMove}
                      beforeMove={this.checkMobility.bind(this)}
         />
     }));
+
+    isRockMovable(rockPosition){
+
+        for (let tile of this.tileList) {
+            let isLast = 0;
+            for (let index = 0; index <  tile.positions.length; index++) {
+                if (index !== 0 &&
+                    tile.positions[index].isEmpty === true ) {
+                    isLast = index;
+                    break
+                }
+            }
+            if (isLast  > 0 &&
+                rockPosition.x === tile.positions[isLast - 1].x &&
+                rockPosition.y === tile.positions[isLast - 1].y){
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * traverses the tiles and the rocks to determine if the rock is moveable
@@ -113,11 +132,14 @@ export default class Board extends React.Component {
             for (let pos of tile.positions) {
                 for (let rockStack of this.rocks) {
                     for (let rock of rockStack) {
+                        this.isRockMovable(pos)
                         if (pos.x === e.target.cx.baseVal.value &&
-                            pos.y === e.target.cy.baseVal.value &&
-                            rock.props.owner === this.state.currentPlayer.name
+                            pos.y === e.target.cy.baseVal.value
                             )  {
-                            return true
+                            if (rock.props.owner === this.state.currentPlayer.name &&
+                                this.isRockMovable(pos)){
+                                return true
+                            }
                         }
                     }
                 }
