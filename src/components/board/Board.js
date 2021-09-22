@@ -42,9 +42,14 @@ export default class Board extends React.Component {
                     if (position.x === playerRock.cx.baseVal.value
                         && position.y === playerRock.cy.baseVal.value) {
                         position.isEmpty = false;
-                        break;
                     }
                 }
+            }
+        }
+
+        for (let rockList of this.rocks){
+            for(let rock of rockList){
+                console.log(rock)
             }
         }
         this.handleTurn()
@@ -59,7 +64,7 @@ export default class Board extends React.Component {
         } else {
             this.setState({currentPlayer: this.user1})
         }
-        this.setState({availableSpaces: findAvailableSpaces(this.tileList)});
+        this.setState({availableSpaces: this.findAvailableSpaces()});
         this.setState({roll: Math.floor(Math.random() * 6) + 1})
     }
 
@@ -96,7 +101,7 @@ export default class Board extends React.Component {
                      id={this[v.user].name + '' + this[v.user].rocks.length}
                      owner={this[v.user].name}
                      colour={this[v.user].colour}
-                     freePlaces={this.findAvailableSpaces()}
+                     freePlaces={this.findAvailableSpaces.bind(this)}
                      moveable={true}
                      onMove={this.handleMove}
                      beforeMove={this.checkMobility.bind(this)}
@@ -114,8 +119,10 @@ export default class Board extends React.Component {
             for (let pos of tile.positions) {
                 for (let rockStack of this.rocks) {
                     for (let rock of rockStack) {
-                        if (pos.x === e.target.cx.baseVal.value && pos.y === e.target.cy.baseVal.value &&
-                            rock.props.owner === this.state.currentPlayer.name) {
+                        if (pos.x === e.target.cx.baseVal.value &&
+                            pos.y === e.target.cy.baseVal.value &&
+                            rock.props.owner === this.state.currentPlayer.name
+                            )  {
                             return true
                         }
                     }
@@ -199,24 +206,6 @@ function createTilesRepresentation(width) {
     return tileList;
 }
 
-/**
- * searches for non full positions where another Rock can be placed
- * @param tileList grid representation of Tile places where Rocks can be placed
- * @returns {[]} list of available places in the grid
- */
-function findAvailableSpaces(tileList) {
-    let availableSpaces = [];
-
-    for (let [key, value] of Object.entries(tileList)) {
-        for (let [index, poz] of Object.entries(value.positions)) {
-            if (poz.isEmpty === true) {
-                availableSpaces.push({where: key, index: index, position: poz});
-                break;
-            }
-        }
-    }
-    return availableSpaces;
-}
 
 /**
  * determines to which position of the Board a Rock needs to be placed for the classical allignment

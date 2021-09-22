@@ -32,7 +32,7 @@ export default class Rock extends React.Component {
      */
     onControlledDrag = (e, position) => {
         const {x, y} = position;
-        this.setState({controlledPosition: {x, y}, position: {xPosition: x, yPosition: y}});
+        this.setState({controlledPosition: {x, y}});
     };
 
     /**
@@ -86,6 +86,8 @@ export default class Rock extends React.Component {
  * @returns {{x: *, y: *}|*} position
  */
 function findClosestPlace(places, pos, original) {
+    places = places()
+
     original.distanceFrom = Math.sqrt(Math.pow(pos.x - original.xPosition, 2) *
         Math.pow(pos.y - original.yPosition, 2));
     let others = [];
