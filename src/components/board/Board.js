@@ -46,12 +46,6 @@ export default class Board extends React.Component {
                 }
             }
         }
-
-        for (let rockList of this.rocks){
-            for(let rock of rockList){
-                console.log(rock)
-            }
-        }
         this.handleTurn()
     };
 
